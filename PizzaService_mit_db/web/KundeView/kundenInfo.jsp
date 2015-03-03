@@ -45,11 +45,11 @@
             <table>
                 <tr>
                     <td>Vorname:</td>
-                    <td><input type="text" name="vorname"></td>
+                    <td><input type="text" name="vorname" required></td>
                 </tr>
                 <tr>
                     <td>Nachname:</td>
-                    <td><input type="text" name="nachname"></td>
+                    <td><input type="text" name="nachname" required></td>
                 </tr>
                 <tr><td><br></td></tr>
                 <tr>
@@ -57,19 +57,19 @@
                 </tr>
                 <tr>
                     <td>Straße:</td>
-                    <td><input type="text" name="strasse"></td>
+                    <td><input type="text" name="strasse" required></td>
                     <td>Nr.:</td>
-                    <td><input type="text" name="hausNr" style="width: 25px"></td>
+                    <td><input type="text" name="hausNr" style="width: 25px" required></td>
                 </tr>
                 <tr>
                     <td>PLZ.:</td>
-                    <td><input type="text" name="plz"  style="width: 45px"></td>
+                    <td><input type="text" name="plz"  style="width: 45px" required></td>
                     <td>Stadt:</td>
-                    <td><input type="text" name="stadt"></td>
+                    <td><input type="text" name="stadt" required></td>
                 </tr>
                 <tr>
                     <td>Telefon:</td>
-                    <td><input type="text" name="telefonnummer"></td>
+                    <td><input type="text" name="telefonnummer" required></td>
                 </tr>
             </table>
             <input type="submit" value="Fortsetzen" />

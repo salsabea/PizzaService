@@ -30,50 +30,50 @@
     </head>
     <body>
         <%
-//            if (mySpeiseEntry != null) {
-//                // Save Speise Entry
-//                SpeiseController sc = new SpeiseController();
-//                sc.setCurrentEintrag(mySpeiseEntry);
-//                // Store if Speise is not already in database
-//                if (!sc.contains(mySpeiseEntry.getName())) {
-//                    sc.getCurrentEintrag().store();
-//                }
-//                
-//                // Save Grosse Entry
-//                GrosseController gc = new GrosseController();
-//                if (!request.getParameter("neueGrosse").equals("")) {
-//                    myGrosseEntry.setGrosseId(gc.getGrosseId(myGrosseEntry.getGrosseName()));
-//                    myGrosseEntry.setGrosseName(request.getParameter("neueGrosse"));
-//                    myGrosseEntry.setGrosseBeschreibung(request.getParameter("neueBeschreibung"));
-//                    gc.setCurrentEintrag(myGrosseEntry);
-//                    
-//                    // Before storing, make sure it is not already there
-//                    if (gc.getGrosseId(myGrosseEntry.getGrosseName()) != -1){
-//                        gc.getCurrentEintrag().store();
-//                    }
-//                } else {
-//                    myGrosseEntry.setGrosseName(request.getParameter("grosseName"));
-//                    gc.setCurrentEintrag(myGrosseEntry);
-//                }
-//                
-//
-//                // Save Preis Entry
-//                myPreisEntry.setSpeiseId(sc.getSpeiseId(mySpeiseEntry.getName()));
-//                myPreisEntry.setGrosseId(myGrosseEntry.getGrosseId());
-//                myPreisEntry.setPreis(Double.parseDouble(request.getParameter("preis")));
-//                
-//                if (myPreisEntry.getPreis() != 0) {
-//                    PreisController pc = new PreisController();
-//                    pc.setCurrentEintrag(myPreisEntry);
-//                    
-//                    // TODO: prevent double entries in table "preis"
-//                    pc.getCurrentEintrag().store();
-//                }
-//            }
-//
+            if (mySpeiseEntry != null) {
+                // Save Speise Entry
+                SpeiseController sc = new SpeiseController();
+                sc.setCurrentEintrag(mySpeiseEntry);
+                // Store if Speise is not already in database
+                if (!sc.contains(mySpeiseEntry.getName())) {
+                    sc.getCurrentEintrag().store();
+                }
+                
+                // Save Grosse Entry
+                GrosseController gc = new GrosseController();
+                if (!request.getParameter("neueGrosse").equals("")) {
+                    myGrosseEntry.setGrosseId(gc.getGrosseId(myGrosseEntry.getGrosseName()));
+                    myGrosseEntry.setGrosseName(request.getParameter("neueGrosse"));
+                    myGrosseEntry.setGrosseBeschreibung(request.getParameter("neueBeschreibung"));
+                    gc.setCurrentEintrag(myGrosseEntry);
+                    
+                    // Before storing, make sure it is not already there
+                    if (gc.getGrosseId(myGrosseEntry.getGrosseName()) != -1){
+                        gc.getCurrentEintrag().store();
+                    }
+                } else {
+                    myGrosseEntry.setGrosseName(request.getParameter("grosseName"));
+                    gc.setCurrentEintrag(myGrosseEntry);
+                }
+                
+
+                // Save Preis Entry
+                myPreisEntry.setSpeiseId(sc.getSpeiseId(mySpeiseEntry.getName()));
+                myPreisEntry.setGrosseId(myGrosseEntry.getGrosseId());
+                myPreisEntry.setPreis(Double.parseDouble(request.getParameter("preis")));
+                
+                if (myPreisEntry.getPreis() != 0) {
+                    PreisController pc = new PreisController();
+                    pc.setCurrentEintrag(myPreisEntry);
+                    
+                    // TODO: prevent double entries in table "preis"
+                    pc.getCurrentEintrag().store();
+                }
+            }
+
 
         %>
-        <table border="1px">
+        <table border="1">
             <tr>
                 <td>Speise Name</td>
                 <td style="width: 500px">Beschreibung</td>

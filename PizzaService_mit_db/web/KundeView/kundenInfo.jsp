@@ -1,7 +1,7 @@
 <%-- 
     Document   : kundenInfo
     Created on : Feb 1, 2015, 11:06:50 PM
-    Author     : Sabah
+    Author     : Sabah Al-Sabea
 --%>
 
 <%@page import="java.util.List"%>

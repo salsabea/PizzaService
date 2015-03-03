@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Inject;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +27,7 @@ import com.pizza.Controller.BestellungsList;
 
 /**
  *
- * @author Schulung_IBB
+ * @author Sabah Al-Sabea
  */
 @WebServlet(name="rechnungPDF",urlPatterns = "/rechnung.pdf")
 public class RechnungPDF extends HttpServlet{
@@ -39,6 +38,7 @@ public class RechnungPDF extends HttpServlet{
      */
    
     
+    @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
         try {
             resp.setContentType("application/pdf");
@@ -81,12 +81,11 @@ public class RechnungPDF extends HttpServlet{
             os.close();
             for ( PrintService s : PrintServiceLookup.lookupPrintServices( null, null ) )System.out.println( s.getName() );
              
-        } catch (DocumentException ex) {
-            Logger.getLogger(RechnungPDF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (DocumentException | IOException ex) {
             Logger.getLogger(RechnungPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
         doGet(req, resp);
     }

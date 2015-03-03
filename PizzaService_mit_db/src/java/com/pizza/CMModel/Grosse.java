@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author IBB Teilnehmer
+ * @author Sabah Al-Sabea
  */
 
 public class Grosse extends DBConnect{

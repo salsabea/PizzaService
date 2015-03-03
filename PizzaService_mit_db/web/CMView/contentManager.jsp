@@ -1,7 +1,7 @@
 <%-- 
     Document   : contentManager
     Created on : 28.01.2015, 11:00:37
-    Author     : IBB Teilnehmer
+    Author     : Sabah Al-Sabea
 --%>
 
 
@@ -13,7 +13,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Content Manager</title>
+        <title>Content Manager</title>        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            $(function (ready) {
+                $("#grosseName").change(function () {
+                    if ($("#grosseName").val() === "other") {
+                        $("#neueGrosse").show().find('input').focus();
+                        $("#neueBeschreibung").show();
+                    } else {
+                        $("#neueGrosse").hide();
+                        $("#neueBeschreibung").hide();
+                    }
+                });
+            });
+        </script>
         <style>
             body {
                 font-family: Verdana,Geneva,Tahoma,sans-serif;
@@ -22,13 +36,13 @@
     </head>
     <body>
 
-        <h1>Bitte benutzen Sie dieses Formular um neue Speise in die Speisekarte hinzufügen</h1>
-        <form action="speiseView.jsp" method="POST">
+        <h3>Bitte benutzen Sie dieses Formular um neue Speise in die Speisekarte hinzufügen</h3>
+        <form id="speise-form" action="speiseView.jsp" method="POST">
 
             <table>
                 <tr>
                     <td>Speise Name *</td>
-                    <td><input type="text" name="name" placeholder="z.B. Pizza Margherita" /></td>  
+                    <td><input type="text" id="name" name="name" placeholder="z.B. Pizza Margherita" required /></td>  
                 </tr>
                 <tr>
                     <td>Beschreibung</td>
@@ -36,7 +50,7 @@
                 </tr>
                 <tr>
                     <td>Typ *</td>
-                    <td><select name="typ">
+                    <td><select name="typ" required>
                             <option value="" disabled="" selected="">- auswählen -</option>
                             <option>Pizza Gerichte</option>
                             <option>Pasta Gerichte</option>
@@ -52,11 +66,10 @@
                     <td>Image</td>
                     <td><input type="text" name="image" /></td>
                 </tr> 
-                <tr><td colspan="2"><br></td></tr>
                 <tr>
-                    <td>Grosse</td>
+                    <td>Grosse *</td>
                     <td>
-                        <select name="grosseName">
+                        <select id="grosseName" name="grosseName" required>
                             <option value="" disabled selected>- Grösse Wählen ggf. -</option>
                             <%
                                 Grosse grosse = new Grosse();
@@ -72,23 +85,22 @@
                         </select>                            
                     </td>
                 </tr>
-                <tr><td colspan="2"><br></td></tr>
-                <tr>
-                    <td>Grosse Name **</td>
-                    <td><input type="text" name="neueGrosse" placeholder="z.B. Klein, 400ml" /></td>
+                <tr id="neueGrosse" hidden>
+                    <td>Grosse Name *</td>
+                    <td style="font-size: 0.7em"><input type="text" name="neueGrosse" placeholder="z.B. Klein, 400ml" />
+                            * Mindestens ein Grossename muss hinzufügt werden</td>
                 </tr>
-                <tr>
+                <tr id="neueBeschreibung" hidden>
                     <td>Grosse Beschreibung</td>
                     <td><input type="text" name="neueBeschreibung" placeholder="z.B. 18cm" /></td>
-                </tr>
-                <tr><td colspan="2"><br></td></tr>
+                </tr> 
                 <tr>
                     <td>Preis in € *</td>
-                    <td><input type="text" name="preis" /></td>
+                    <td><input type="text" name="preis" required /></td>
                 </tr>
             </table>
-                            <p style="font-size: 0.7em">* Zwingend</p>
-                            <p style="font-size: 0.7em">** Bei "Andere" Grosse, bitte Name und/oder Beschreibung hier hinfügen</p>
+            <p style="font-size: 0.7em">* Zwingend</p>
+            
             <input type="submit" name="speichern" value="Hinzufügen" />
         </form>
     </body>

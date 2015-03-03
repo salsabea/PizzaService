@@ -10,17 +10,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 /**
  *
- * @author IBB Teilnehmer
+ * @author Sabah Al-Sabea
  */
 public class DBConnect {
-
+    
+    /**
+     * Returns a Connection to the database 
+     */
     protected Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -32,21 +31,14 @@ public class DBConnect {
             conn.setAutoCommit(false);
             return conn;
 
-            // with pool do the next, surround with the corrsponding try-catch
+            // with pool do the next, adjust the import and the exception handlers accordingly
 //            Context ctx = new InitialContext();
 //            DataSource ds = (DataSource) ctx.lookup("jdbc/LaGondola");
 //            
 //            Connection conn = ds.getConnection();
 //            
 //            return conn;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

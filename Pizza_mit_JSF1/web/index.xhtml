@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Wilkommen bei Pizza La Gondola</title>
+    </h:head>
+    <h:body>
+        <h1>Wilkommen bei Pizza La Gondola</h1>
+        <br />
+        <h:form id="frmSpeise">
+            <h:dataTable id="tbleSpeise" value="#{speiseController.speiseKarte}" var="speise" border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name" />
+                    </f:facet>
+                    <h:outputText id="name" value="#{speise.speise_name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preis" />
+                    </f:facet>
+                    <h:outputText id="preis" value="#{speise.preis}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Menge" />
+                    </f:facet>
+                    <h:inputText id="menge" value="#{speiseController.addMenge(speise.speise_id)}" />                    
+                </h:column>
+            </h:dataTable>
+            <h:commandButton action="#{speiseController.createItems()}" value="OK"/>
+        </h:form>
+    </h:body>
+</html>
+

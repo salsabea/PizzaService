@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:loadBundle basename="myPizzaService" var="info" />
+        <title>#{info.kundenTitle}</title>
+    </h:head>
+    <h:body style="font-family: Verdana,Geneva,Tahoma,sans-serif;">
+        <h3>#{info.kundenWelcomeMsg}</h3>
+        <h:messages />
+        <h:form id="frmKunde">
+            <h:panelGrid id="panel" columns="3">
+                <h:outputLabel for="inFirst" value="#{info.firstName}" />*
+                <h:inputText id="inFirst" value="#{myController.kunde.vorname}" required="true" requiredMessage="#{info.requiredMsg}" />
+                <h:outputLabel for="inLast" value="#{info.lastName}" />*
+                <h:inputText id="inLast" value="#{myController.kunde.nachname}" required="true" requiredMessage="#{info.requiredMsg}" />
+                <f:facet name="anschrift" >
+                    <h:outputText value="#{info.address}" style="font-weight: bold" />
+                </f:facet>
+                <h:outputLabel for="inStreet" value="#{info.street}" />*
+                <h:inputText id="inStreet" value="#{myController.kunde.strasse}" required="true" requiredMessage="#{info.requiredMsg}" />
+                <h:outputLabel for="inHausNr" value="#{info.houseNb}" />*
+                <h:inputText id="inHausNr" value="#{myController.kunde.haus_nr}" required="true" requiredMessage="#{info.requiredMsg}" />
+                <h:outputLabel for="inPlz" value="#{info.zip}" />*
+                <h:inputText id="inPlz" value="#{myController.kunde.plz}" required="true" requiredMessage="#{info.requiredMsg}" />
+                <h:outputLabel for="inCity" value="#{info.city}" />*
+                <h:inputText id="inCity" value="#{myController.kunde.stadt}" required="true" requiredMessage="#{info.requiredMsg}" />
+                <h:outputLabel for="inTelefon" value="#{info.tel}" />*
+                <h:inputText id="inTelefon" value="#{myController.kunde.telefon}" required="true" requiredMessage="#{info.requiredMsg}" />                
+            </h:panelGrid>
+            
+            <h:commandButton action="#{myController.bestellen()}" value="#{info.finish}"/>
+        </h:form>
+    </h:body>
+</html>
+

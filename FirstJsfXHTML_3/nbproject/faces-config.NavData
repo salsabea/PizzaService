@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="index.xhtml" x="901" y="28" zoom="true"/>
+        <Node id="*" x="50" y="50" zoom="true"/>
+        <Node id="zweite.jsp" x="150" y="300" zoom="true"/>
+        <Node id="dritte.jsp" x="400" y="150" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="579" y="38" zoom="true"/>
+        <Node id="zweite.xhtml" x="186" y="401" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

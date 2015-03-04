@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.CMModel;
 
 import java.sql.Connection;
@@ -12,7 +7,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <h1>Models the Grosse Entry of the Grosse Table</h1>
+ * The GrosseEintrag class is used to model the Grosse Table of the database. In addition to 
+ * getters and setter of the corresponding fields, there is a method used to store a new 
+ * entry to the table.
+ * 
  * @author Sabah Al-Sabea
  */
 public class GrosseEintrag extends DBConnect {
@@ -30,30 +29,60 @@ public class GrosseEintrag extends DBConnect {
         this.grosseBeschreibung = grosseBeschreibung;
     }
 
+    /**
+     * 
+     * @return Integer This is the id of the current grosse
+     */
     public Integer getGrosseId() {
         return grosseId;
     }
 
+    /**
+     * 
+     * @param grosseId the grosse id to be set to the current grosse
+     */
     public void setGrosseId(Integer grosseId) {
         this.grosseId = grosseId;
     }
 
+    /**
+     * 
+     * @return String This is the name of the current grosse
+     */
     public String getGrosseName() {
         return grosseName;
     }
 
+    /**
+     * 
+     * @param grosseName the grosse name to be set to the current grosse
+     */
     public void setGrosseName(String grosseName) {
         this.grosseName = grosseName;
     }
 
+    /**
+     * 
+     * @return String This is the description of the current grosse
+     */    
     public String getGrosseBeschreibung() {
         return grosseBeschreibung;
     }
 
+    /**
+     * 
+     * @param grosseBeschreibung the description to be set to the current grosse
+     */
     public void setGrosseBeschreibung(String grosseBeschreibung) {
         this.grosseBeschreibung = grosseBeschreibung;
     }
 
+    /**
+     * 
+     * Stores the current grosse entry in the Grosse table in the database
+     * 
+     * @return boolean true if successfully stored
+     */
     public boolean store() {
         Connection con = null;
         PreparedStatement stm = null;

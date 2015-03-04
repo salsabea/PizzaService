@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.Model;
 
 import java.sql.Connection;
@@ -12,8 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Sabah
+ * <h1>Models the Items entry of the Items Table</h1>
+ * The Items class is used to model the entries of the items table of the database. 
+ * In addition to getters and setter of the corresponding fields, there is a method used to store a new 
+ * entry to the table.
+ * 
+ * @author Sabah Al-Sabea
  */
 public class Items extends com.pizza.CMModel.DBConnect {
     private Integer itemId;
@@ -23,71 +22,69 @@ public class Items extends com.pizza.CMModel.DBConnect {
 
     public Items() {
     }
-
-    public Items(Integer itemId, Integer bestellungId, Integer preisId, Integer menge) {
-        this.itemId = itemId;
-        this.bestellungId = bestellungId;
-        this.preisId = preisId;
-        this.menge = menge;
-    }
-
+    
+    /**
+     * 
+     * @return Integer This is the id of the item from the items table
+     */
     public Integer getItemId() {
         return itemId;
     }
 
+    /**
+     * 
+     * @param itemId the item id
+     */
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
+    /**
+     * 
+     * @return Integer This is the bestellung id of the item from the items table
+     */
     public Integer getBestellungId() {
         return bestellungId;
     }
 
+    /**
+     * 
+     * @param bestellungId the bestellung id of the item
+     */
     public void setBestellungId(Integer bestellungId) {
         this.bestellungId = bestellungId;
     }
 
+    /**
+     * 
+     * @return Integer This is the price id of the item from the items table
+     */
     public Integer getPreisId() {
         return preisId;
     }
 
+    /**
+     * 
+     * @param preisId the preis id of the item
+     */
     public void setPreisId(Integer preisId) {
         this.preisId = preisId;
     }
 
+    /**
+     * 
+     * @return Integer This is the amount ordered of this item from the items table
+     */
     public Integer getMenge() {
         return menge;
     }
 
+    /**
+     * 
+     * @param menge the amount ordered of the item
+     */
     public void setMenge(Integer menge) {
         this.menge = menge;
     }
     
-    public boolean store() {
-        Connection con = null;
-        PreparedStatement stm = null;
-        boolean stored = false;
-        
-        try {
-            con = getConnection();
-            if(con == null) return false;
-            stm = con.prepareStatement("INSERT INTO items (BestellungsId, PreisId, Menge) "
-                    + "VALUES(?,?,?)");
-            stm.setInt(1, this.bestellungId);
-            stm.setInt(2, this.preisId);
-            stm.setInt(3, this.menge);
-            
-            int rows = stm.executeUpdate();
-            System.out.println("rows stored are " + rows);
-            con.commit();
-            stored = rows == 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(com.pizza.Model.Kunde.class.getName()).log(Level.SEVERE, null, ex);
-            stored = false;
-        } finally {
-            try { if( stm != null) stm.close(); } catch(Exception e) {}
-            try { if( con != null) con.close(); } catch(Exception e) {}
-        }
-        return stored;
-    }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.CMModel;
 
 import java.sql.Connection;
@@ -12,8 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Sabah
+ * <h1>Models the Preis Entry of the Preis Table</h1>
+ * The PreisEintrag class is used to model the Preis Table of the database. In addition to 
+ * getters and setter of the corresponding fields, there is a method used to store a new 
+ * entry to the table.
+ * 
+ * @author Sabah Al-Sabea
  */
 public class PreisEintrag extends DBConnect{
     private Integer preisId;
@@ -24,21 +23,77 @@ public class PreisEintrag extends DBConnect{
     public PreisEintrag() {
         this.grosseId = -1;
     }
-
-    public PreisEintrag(Integer preisId, Integer speiseId, Integer grosseId, Double preis) {
-        this.preisId = preisId;
-        this.speiseId = speiseId;
-        this.grosseId = grosseId;
-        this.preis = preis;
-    }
-
+    
+    /**
+     * 
+     * @return Integer This is the id of the current preis
+     */
     public Integer getPreisId() {
         return preisId;
     }
-
+    
+    /**
+     * 
+     * @param preisId the preis Id to be set to the current preis entry
+     */
     public void setPreisId(Integer preisId) {
         this.preisId = preisId;
     }
+    
+    /**
+     * 
+     * @return Integer This is the speiseId of the current preis
+     */
+    public Integer getSpeiseId() {
+        return speiseId;
+    }
+
+    /**
+     * 
+     * @param speiseId the speiseId value to be set to the current preis entry
+     */
+    public void setSpeiseId(Integer speiseId) {
+        this.speiseId = speiseId;
+    }
+
+    /**
+     * 
+     * @return Integer This is the grosseId of the current preis
+     */
+    public Integer getGrosseId() {
+        return grosseId;
+    }
+
+    /**
+     * 
+     * @param grosseId the grosseId value to be set to the current preis entry
+     */
+    public void setGrosseId(Integer grosseId) {
+        this.grosseId = grosseId;
+    }
+
+    /**
+     * 
+     * @return Double This is the value of the current preis
+     */
+    public Double getPreis() {
+        return preis;
+    }
+
+    /**
+     * 
+     * @param preis the preis value to be set to the current preis entry
+     */
+    public void setPreis(Double preis) {
+        this.preis = preis;
+    }
+    
+    /**
+     * 
+     * Stores the current preis entry in the Preis table in the database
+     * 
+     * @return boolean true if successfully stored
+     */
     public boolean store() {
         Connection con = null;
         PreparedStatement stm = null;
@@ -69,29 +124,4 @@ public class PreisEintrag extends DBConnect{
         return stored;
     }
 
-    public Integer getSpeiseId() {
-        return speiseId;
-    }
-
-    public void setSpeiseId(Integer speiseId) {
-        this.speiseId = speiseId;
-    }
-
-    public Integer getGrosseId() {
-        return grosseId;
-    }
-
-    public void setGrosseId(Integer grosseId) {
-        this.grosseId = grosseId;
-    }
-
-    public Double getPreis() {
-        return preis;
-    }
-
-    public void setPreis(Double preis) {
-        this.preis = preis;
-    }
-    
-    
 }

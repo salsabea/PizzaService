@@ -12,7 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <h1>Connects to the database</h1>
+ * The DBConnect class is used to get a connection to the database.
+ * 
  * @author Sabah Al-Sabea
  */
 public class DBConnect {

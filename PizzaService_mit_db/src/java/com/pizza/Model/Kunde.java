@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.Model;
 
 import java.sql.Connection;
@@ -13,8 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Sabah
+ * <h1>Models the Kunde entry of the Kunde Table</h1>
+ * The Kunde class is used to model the entries of the kunde table of the database. 
+ * In addition to getters and setter of the corresponding fields, there is a method used to store a new 
+ * entry to the table.
+ * 
+ * @author Sabah Al-Sabea
  */
 public class Kunde extends com.pizza.CMModel.DBConnect {
 
@@ -31,17 +30,10 @@ public class Kunde extends com.pizza.CMModel.DBConnect {
     public Kunde() {
     }
 
-    public Kunde(Integer kundeId, String vorname, String nachname, String strasse, String adresseHausNr, Integer adressePLZ, String adresseStadt, String telefonnummer) {
-        this.kundeId = kundeId;
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.strasse = strasse;
-        this.hausNr = adresseHausNr;
-        this.plz = adressePLZ;
-        this.stadt = adresseStadt;
-        this.telefonnummer = telefonnummer;
-    }
-
+    /**
+     * 
+     * @return Integer This is the id of the customer (or kunde) from the kunde table
+     */
     public Integer getKundeId() {
         return kundeId;
     }
@@ -50,62 +42,124 @@ public class Kunde extends com.pizza.CMModel.DBConnect {
         this.kundeId = kundeId;
     }
 
+    /**
+     * 
+     * @return Integer This is the first name of the customer (or kunde) from the kunde table
+     */
     public String getVorname() {
         return vorname;
     }
 
+    /**
+     * 
+     * @param vorname the first name of the customer from kunde table
+     */
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
 
+    /**
+     * 
+     * @return Integer This is the last name of the customer (or kunde) from the kunde table
+     */
     public String getNachname() {
         return nachname;
     }
 
+    /**
+     * 
+     * @param nachname the last name of the customer from kunde table
+     */
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
 
+    /**
+     * 
+     * @return Integer This is the street name of the customer (or kunde) from the kunde table
+     */
     public String getStrasse() {
         return strasse;
     }
-
+    
+    /**
+     * 
+     * @param strasse the street name of the customer from kunde table
+     */
     public void setStrasse(String strasse) {
         this.strasse = strasse;
     }
 
+    /**
+     * 
+     * @return Integer This is the house number of the customer (or kunde) from the kunde table
+     */
     public String getHausNr() {
         return hausNr;
     }
 
+    /**
+     * 
+     * @param hausNr the house number of the customer from kunde table
+     */
     public void setHausNr(String hausNr) {
         this.hausNr = hausNr;
     }
 
+    /**
+     * 
+     * @return Integer This is the ZIP code of the customer (or kunde) from the kunde table
+     */
     public Integer getPlz() {
         return plz;
     }
 
+    /**
+     * 
+     * @param plz the ZIP code of the customer from kunde table
+     */
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
 
+    /**
+     * 
+     * @return Integer This is the address city of the customer (or kunde) from the kunde table
+     */
     public String getStadt() {
         return stadt;
     }
 
+    /**
+     * 
+     * @param stadt the address city of the customer from kunde table
+     */
     public void setStadt(String stadt) {
         this.stadt = stadt;
     }
 
+    /**
+     * 
+     * @return String This is the telephone number of the customer (or kunde) from the kunde table
+     */
     public String getTelefonnummer() {
         return telefonnummer;
     }
 
+    /**
+     * 
+     * @param telefonnummer the telephone number of the customer from kunde table
+     */
     public void setTelefonnummer(String telefonnummer) {
         this.telefonnummer = telefonnummer;
     }    
 
+    /**
+     * 
+     * Stores an entry to the kunde table using the current kunde
+     * 
+     * @return boolean true if successfully stored 
+     */
     public boolean store() throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

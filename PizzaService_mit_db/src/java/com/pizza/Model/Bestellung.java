@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.Model;
 
 import java.sql.Connection;
@@ -15,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- *
- * @author Sabah
+ * <h1>Models the Bestellung entry of the Bestellung Table</h1>
+ * The Bestellung class is used to model the entries of the bestellung table of the database. 
+ * In addition to getters and setter of the corresponding fields, there is a method used to store a new 
+ * entry to the table and another one to update the totalPreis.
+ * 
+ * @author Sabah Al-Sabea
  */
 public class Bestellung extends com.pizza.CMModel.DBConnect {
     private Integer bestellungId;
@@ -28,82 +27,93 @@ public class Bestellung extends com.pizza.CMModel.DBConnect {
     public Bestellung() {
     }
 
-    public Bestellung(Integer bestellungId, Integer kundeId, String sessionId, String ipAddress, Double totalPreis) {
-        this.bestellungId = bestellungId;
-        this.kundeId = kundeId;
-        this.sessionId = sessionId;
-        this.ipAddress = ipAddress;     
-        this.totalPreis = totalPreis;
-    }
-
+    /**
+     * 
+     * @return Integer This is the id of the order (or bestellung) from the bestellung table
+     */
     public Integer getBestellungId() {
         return bestellungId;
     }
 
+    /**
+     * 
+     * @param bestellungId the Id of the bestellung from the bestellung table.
+     */
     public void setBestellungId(Integer bestellungId) {
         this.bestellungId = bestellungId;
     }        
 
+    /**
+     * 
+     * @return Integer This is the id of the customer (or kunde) from the bestellung table
+     */
     public Integer getKundeId() {
         return kundeId;
     }
 
+    /**
+     * 
+     * @param kundeId the Id of the customer (or kunde) from the bestellung table.
+     */
     public void setKundeId(Integer kundeId) {
         this.kundeId = kundeId;
     }
 
+    /**
+     * 
+     * @return String This is the sessionId of the order (or bestellung)
+     */
     public String getSessionId() {
         return sessionId;
     }
 
+    /**
+     * 
+     * @param sessionId the session Id of the bestellung from the bestellung table.
+     */
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
 
+    /**
+     * 
+     * @return String This is the IP Address of the order (or bestellung)
+     */
     public String getIpAddress() {
         return ipAddress;
     }
 
+    /**
+     * 
+     * @param ipAddess the IP Address of the bestellung from the bestellung table.
+     */
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
 
+    /**
+     * 
+     * @return Double This is the total price of the order (or bestellung)
+     */
     public Double getTotalPreis() {
         return totalPreis;
     }
 
+    /**
+     * 
+     * @param totalPreis the total price sum of all the items in a bestellung.
+     * It should be stored in the bestellung table.
+     */
     public void setTotalPreis(Double totalPreis) {
         this.totalPreis = totalPreis;
     }
     
-    public boolean storeTotalPreis(Double totalPreis) {
-        Connection con = null;
-        PreparedStatement stm = null;
-        boolean stored = false;
-        
-        try {
-            con = getConnection();
-            if(con == null) return false;
-            stm = con.prepareStatement("UPDATE bestellung  SET TotalPreis = ? WHERE BestellungId = ?");
-            stm.setDouble(1, totalPreis);
-            stm.setInt(2, this.getBestellungId());
-            
-            
-            int rows = stm.executeUpdate();
-            System.out.println("totalPreis updated");
-                                    
-            con.commit();
-            stored = rows == 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(com.pizza.Model.Kunde.class.getName()).log(Level.SEVERE, null, ex);
-            stored = false;
-        } finally {
-            try { if( stm != null) stm.close(); } catch(Exception e) {}
-            try { if( con != null) con.close(); } catch(Exception e) {}
-        }
-        return stored;
-    }
-    
+    /**
+     * 
+     * Stores an entry to the bestellug table using the current bestellung
+     * 
+     * @return boolean true if successfully stored 
+     */
     public boolean store(HttpServletRequest req) {
         Connection con = null;
         PreparedStatement stm = null;
@@ -146,4 +156,40 @@ public class Bestellung extends com.pizza.CMModel.DBConnect {
         }
         return stored;
     }
+    
+    /**
+     * 
+     * Updates the totalPreis value with the given value
+     * 
+     * @param totalPreis the value of the total price of the bestellung 
+     * @return boolean true if successfully updated
+     */
+    public boolean storeTotalPreis(Double totalPreis) {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean stored = false;
+        
+        try {
+            con = getConnection();
+            if(con == null) return false;
+            stm = con.prepareStatement("UPDATE bestellung  SET TotalPreis = ? WHERE BestellungId = ?");
+            stm.setDouble(1, totalPreis);
+            stm.setInt(2, this.getBestellungId());
+            
+            
+            int rows = stm.executeUpdate();
+            System.out.println("totalPreis updated");
+                                    
+            con.commit();
+            stored = rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(com.pizza.Model.Kunde.class.getName()).log(Level.SEVERE, null, ex);
+            stored = false;
+        } finally {
+            try { if( stm != null) stm.close(); } catch(Exception e) {}
+            try { if( con != null) con.close(); } catch(Exception e) {}
+        }
+        return stored;
+    }
+    
 }

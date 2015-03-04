@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.CMModel;
 
 import java.sql.Connection;
@@ -15,13 +10,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <h1>Controls the database part of the GrosseEintrg Model</h1>
+ * The Grosse class is used to do the actual connection to the database. It contains
+ * a set of methods needed to get Grosse entries. Here the actual queries are executed.
+ * 
  * @author Sabah Al-Sabea
  */
 
 public class Grosse extends DBConnect{
-    private GrosseEintrag meineEintrag;
-
+    /**
+     * This method gets all the entries from the Grosse table
+     * 
+     * @return List<GrosseEintrag> This is a list of all the Grosse entries
+     */
     public List<GrosseEintrag> getList() {
         List<GrosseEintrag> grosseList = new ArrayList<>();
 
@@ -54,6 +55,14 @@ public class Grosse extends DBConnect{
         return grosseList;
     }
     
+    /**
+     * This method gets all the entries from the Grosse table that have a specific
+     * speiseId. Ex. a speise X that has speiseID id_X can have more than one 
+     * size i.e. Grosse.
+     * 
+     * @param speiseId This is the ID of the speise whose grosse entry we are looking for
+     * @return List<GrosseEintrag> This is a list of Grosse entries with SpeiseId = {@code speiseId}
+     */
     public List<GrosseEintrag> getList(Integer speiseId){
         List<GrosseEintrag> grosseList = new ArrayList<>();
 
@@ -88,7 +97,14 @@ public class Grosse extends DBConnect{
         return grosseList;
     }
     
-    public GrosseEintrag getGrosseFromPreisId(Integer PreisId){
+    /**
+     * This method gets the specific Grosse entry from the Grosse table that have a 
+     * certain preisId.
+     * 
+     * @param preisId This is the preis ID whose grosse entry we are looking for
+     * @return GrosseEintrag This is the Grosse entry corresponding to a certain {@code preisId}
+     */
+    public GrosseEintrag getGrosseFromPreisId(Integer preisId){
         Connection connection = null;
         Statement statement = null;
         ResultSet result = null;
@@ -103,7 +119,7 @@ public class Grosse extends DBConnect{
             statement = connection.createStatement();
             result = statement.executeQuery("SELECT grosse.* FROM grosse "
                     + "                     INNER JOIN preis ON grosse.GrosseId = preis.GrosseId "
-                    + "                     WHERE preis.PreisId = " + PreisId);
+                    + "                     WHERE preis.PreisId = " + preisId);
             
             int count = 0;
             while (result.next()){                

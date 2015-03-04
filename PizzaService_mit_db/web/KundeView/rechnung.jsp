@@ -9,7 +9,6 @@
 <%@page import="com.pizza.CMModel.GrosseEintrag"%>
 <%@page import="com.pizza.CMModel.Grosse"%>
 <%@page import="com.pizza.CMController.PreisController"%>
-<%@page import="com.pizza.CMModel.SpeiseEintrag"%>
 <%@page import="com.pizza.CMModel.Speise"%>
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

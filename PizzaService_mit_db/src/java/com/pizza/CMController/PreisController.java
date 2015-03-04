@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.CMController;
 
 import com.pizza.CMModel.PreisEintrag;
@@ -11,8 +6,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
- * @author Sabah
+ * <h1>Controls the PreisEintrag Model</h1>
+ * The PreisController class implements the controller of the PreisEintrag model.
+ * It contains some methods used to fetch the entries of the Preis table 
+ * from the database as well as other values 
+ * 
+ * @author Sabah Al-Sabea
  */
 public class PreisController implements Serializable {
 
@@ -22,71 +21,115 @@ public class PreisController implements Serializable {
         this.currentPrice = new PreisEintrag();
     }
 
-    public void createPreis() {
-        this.currentPrice = new PreisEintrag();
-    }
-
-    public void cancel() {
-        this.currentPrice = null;
-    }
-
-    public PreisEintrag getCurrentEintrag() {
+    /**
+     * 
+     * @return PreisEintrag This is the current price eintrag
+     */
+    public PreisEintrag getCurrentPrice() {
         return this.currentPrice;
     }
 
-    public void setCurrentEintrag(PreisEintrag e) {
-        this.currentPrice = e;
+    /**
+     * 
+     * @param eintrag the current preisEintrag to be set
+     */
+    public void setCurrentPrice(PreisEintrag eintrag) {
+        this.currentPrice = eintrag;
     }
 
+    /**
+     * This method gets all the entries from the Preis table
+     * 
+     * @return List<PreisEintrag> This is a list of all the Preis entries
+     */
     public List<PreisEintrag> getEintraege() {
         Preise p = new Preise();
         return p.getList();
     }
 
-    public Integer getPreisId(Integer SpeiseId, Integer GrosseId) {
+    /**
+     * This method gets the preisId from the Preis table for a certain Speise i.e. with
+     * a specific speiseId. In this case this speise has no specified grosse.
+     * 
+     * @param speiseId This is the ID of the speise whose preisId we are looking for
+     * @return Integer This is the preisId of the Speise with SpeiseId = {@code speiseId}
+     */
+    public Integer getPreisId(Integer speiseId) {
         List<PreisEintrag> eintraege = this.getEintraege();
         for (PreisEintrag pe : eintraege) {
-            if (pe.getSpeiseId() == SpeiseId && pe.getGrosseId() == GrosseId) {
-                return pe.getPreisId();
-            }
-        }
-        return -1;
-    }
-
-    public Integer getPreisId(Integer SpeiseId) {
-        List<PreisEintrag> eintraege = this.getEintraege();
-        for (PreisEintrag pe : eintraege) {
-            if (pe.getSpeiseId() == SpeiseId) {
+            if (pe.getSpeiseId() == speiseId) {
                 return pe.getPreisId();
             }
         }
         return -1;
     }
     
-    public Double getPreis(Integer SpeiseId, Integer GrosseId) {
+    /**
+     * This method gets the preisId from the Preis table for a certain Speise i.e. with
+     * a specific speiseId and grosseId. 
+     * 
+     * @param speiseId This is the ID of the speise whose preisId we are looking for
+     * @param grosseId This is the ID of the grosse whose preisId we are looking for
+     * @return Integer This is the preisId of the Speise with SpeiseId = {@code speiseId}
+     * and grosseId = {@code grosseId}
+     */
+    public Integer getPreisId(Integer speiseId, Integer grosseId) {
         List<PreisEintrag> eintraege = this.getEintraege();
         for (PreisEintrag pe : eintraege) {
-            if (pe.getSpeiseId() == SpeiseId && pe.getGrosseId() == GrosseId) {
+            if (pe.getSpeiseId() == speiseId && pe.getGrosseId() == grosseId) {
+                return pe.getPreisId();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * This method gets the preis from the Preis table for a certain Speise i.e. with
+     * a specific speiseId. In this case this speise has no specified grosse.
+     * 
+     * @param speiseId This is the ID of the speise whose preis we are looking for
+     * @return Integer This is the preis of the Speise with SpeiseId = {@code speiseId}
+     */
+    public Double getPreis(Integer speiseId) {
+        List<PreisEintrag> eintraege = this.getEintraege();
+        for (PreisEintrag pe : eintraege) {
+            if (pe.getSpeiseId() == speiseId) {
+                return pe.getPreis();
+            }
+        }
+        return -1.0;
+    }
+    
+    /**
+     * This method gets the preis from the Preis table for a certain Speise i.e. with
+     * a specific speiseId and grosseId. 
+     * 
+     * @param speiseId This is the ID of the speise whose preis we are looking for
+     * @param grosseId This is the ID of the grosse whose preis we are looking for
+     * @return Double This is the preis of the Speise with speiseId = {@code speiseId}
+     * and grosseId = {@code grosseId}
+     */
+    public Double getPreis(Integer speiseId, Integer grosseId) {
+        List<PreisEintrag> eintraege = this.getEintraege();
+        for (PreisEintrag pe : eintraege) {
+            if (pe.getSpeiseId() == speiseId && pe.getGrosseId() == grosseId) {
                 return pe.getPreis();
             }
         }
         return -1.0;
     }    
     
-    public Double getPreis(Integer SpeiseId) {
+    /**
+     * This method gets the preis from the Preis table that has a specific preisId
+     * 
+     * @param preisId This is the preisId whose preis we are looking for
+     * @return Double This is the preis of preisId = {@code preisId}
+     * and grosseId = {@code grosseId}
+     */
+    public Double getPreisFromPreisId(Integer preisId) {
         List<PreisEintrag> eintraege = this.getEintraege();
         for (PreisEintrag pe : eintraege) {
-            if (pe.getSpeiseId() == SpeiseId) {
-                return pe.getPreis();
-            }
-        }
-        return -1.0;
-    }
-    
-    public Double getPreisFromPreisId(Integer PreisId) {
-        List<PreisEintrag> eintraege = this.getEintraege();
-        for (PreisEintrag pe : eintraege) {
-            if (pe.getPreisId() == PreisId) {
+            if (pe.getPreisId() == preisId) {
                 return pe.getPreis();
             }
         }

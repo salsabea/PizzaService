@@ -33,10 +33,10 @@
             if (mySpeiseEntry != null) {
                 // Save Speise Entry
                 SpeiseController sc = new SpeiseController();
-                sc.setCurrentEintrag(mySpeiseEntry);
+                sc.setCurrentSpeise(mySpeiseEntry);
                 // Store if Speise is not already in database
                 if (!sc.contains(mySpeiseEntry.getName())) {
-                    sc.getCurrentEintrag().store();
+                    sc.getCurrentSpeise().store();
                 }
                 
                 // Save Grosse Entry
@@ -45,15 +45,15 @@
                     myGrosseEntry.setGrosseId(gc.getGrosseId(myGrosseEntry.getGrosseName()));
                     myGrosseEntry.setGrosseName(request.getParameter("neueGrosse"));
                     myGrosseEntry.setGrosseBeschreibung(request.getParameter("neueBeschreibung"));
-                    gc.setCurrentEintrag(myGrosseEntry);
+                    gc.setCurrentGrosse(myGrosseEntry);
                     
                     // Before storing, make sure it is not already there
                     if (gc.getGrosseId(myGrosseEntry.getGrosseName()) != -1){
-                        gc.getCurrentEintrag().store();
+                        gc.getCurrentGrosse().store();
                     }
                 } else {
                     myGrosseEntry.setGrosseName(request.getParameter("grosseName"));
-                    gc.setCurrentEintrag(myGrosseEntry);
+                    gc.setCurrentGrosse(myGrosseEntry);
                 }
                 
 
@@ -64,10 +64,10 @@
                 
                 if (myPreisEntry.getPreis() != 0) {
                     PreisController pc = new PreisController();
-                    pc.setCurrentEintrag(myPreisEntry);
+                    pc.setCurrentPrice(myPreisEntry);
                     
                     // TODO: prevent double entries in table "preis"
-                    pc.getCurrentEintrag().store();
+                    pc.getCurrentPrice().store();
                 }
             }
 

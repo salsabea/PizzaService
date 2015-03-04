@@ -16,13 +16,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <h1>Controls the database part of the SpeiseEintrg Model</h1>
+ * The Speise class is used to do the actual connection to the database. It contains
+ * a set of methods needed to get Speise entries. Here the actual queries are executed.
+ * 
  * @author Sabah Al-Sabea
  */
 public class Speise extends DBConnect {
-
-    private SpeiseEintrag meineEintrag;
-
+    /**
+     * This method gets all the entries from the Speise table
+     * 
+     * @return List<SpeiseEintrag> This is a list of all the Speise entries
+     */
     public List<SpeiseEintrag> getList() {
         List<SpeiseEintrag> speiseList = new ArrayList<>();
 
@@ -31,7 +36,6 @@ public class Speise extends DBConnect {
         ResultSet result = null;
 
         try {
-
             connection = getConnection();
             if (connection == null) {
                 return null;
@@ -58,6 +62,13 @@ public class Speise extends DBConnect {
         return speiseList;
     }
 
+    /**
+     * This method gets all the specific speise entry  from the Speise table 
+     * that corresponds to a certain preisId
+     * 
+     * @param preisId The preisId whose corresponding Speise we are looking for
+     * @return SpeiseEintrag The speise entry corresponding to {@code preisId}
+     */
     public SpeiseEintrag getSpeiseFromPreisId(Integer preisId) {
         Connection connection = null;
         PreparedStatement statement = null;

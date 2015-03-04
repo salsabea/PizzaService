@@ -52,7 +52,6 @@
                 <%
                     String speiseTyp = "";
                     Integer counter = 1;
-                    String preisIds = "";
                     Speise speise = new Speise();
                     List<SpeiseEintrag> speiseList = speise.getList();
                     for (SpeiseEintrag se : speiseList) {
@@ -104,22 +103,18 @@
                             out.print("<td>");
                             for (GrosseEintrag ge : grosseList) {
                                 out.print("<input type='text' name='menge" + pc.getPreisId(se.getSpeiseId(), ge.getGrosseId()) + "' value='0'><br>");
-//                                preisIds = preisIds + pc.getPreisId(se.getSpeiseId(), ge.getGrosseId()) + ",";
                             }
                             out.print("</td>");
                         } else {
                             // Get entsprechend Preis
                             out.print("<td>" + pc.getPreis(se.getSpeiseId()) + "</td>");
                             out.print("<td><input type='text' name='menge" + pc.getPreisId(se.getSpeiseId()) + "' value='0'></td>");
-//                            preisIds = preisIds + pc.getPreisId(se.getSpeiseId()) + ",";
                         }
                         
                         out.print("</tr>");                        
                     }
-//                    preisIds = preisIds.substring(0, preisIds.length() - 1);
                 %>
             </table>
-            <input type="hidden" name="preisIds" value="<%=preisIds %>" />
             <input type="submit" value="Bestellen" name="next" />
         </form>
 

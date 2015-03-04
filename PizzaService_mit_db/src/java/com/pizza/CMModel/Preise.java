@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.CMModel;
 
 import java.sql.Connection;
@@ -15,13 +10,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Sabah
+ * <h1>Controls the database part of the PreiseEintrag Model</h1>
+ * The Preise class is used to do the actual connection to the database. It contains
+ * the actual method needed to get all the Preis entries. Here the actual queries are executed.
+ * 
+ * @author Sabah Al-Sabea
  */
 public class Preise extends DBConnect{
-    
-    private PreisEintrag meineEintrag;
-    
+    /**
+     * This method gets all the entries from the Preis table
+     * 
+     * @return List<PreisEintrag> This is a list of all the Preis entries
+     */
     public List<PreisEintrag> getList() {
         List<PreisEintrag> preisList = new ArrayList<>();
 

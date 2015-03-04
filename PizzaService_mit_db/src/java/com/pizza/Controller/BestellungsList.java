@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizza.Controller;
 
 import java.sql.Connection;
@@ -13,7 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <h1>Controls the Bestellung and Items Models</h1>
+ * The BestellungList class controls the list of items, the quantity and the price 
+ * of the order (or bestellung). Here are also the ordered items stored in the 
+ * corresponding table in the database.
+ * 
  * @author Sabah Al-Sabea
  */
 public class BestellungsList extends com.pizza.CMModel.DBConnect {
@@ -25,36 +24,62 @@ public class BestellungsList extends com.pizza.CMModel.DBConnect {
     public BestellungsList() {
     }
 
-    public BestellungsList(Map<Integer, Integer> bestellList, Integer bestellungId, Double totalPreis) {
-        this.bestellList = bestellList;
-        this.bestellungId = bestellungId;
-        this.totalPreis = totalPreis;
-    }
-
+    /**
+     * 
+     * @return Map<Integer, Integer> This is a Map representing the ordered list of items
+     * in the form of {@code Map<PreisId, Menge>}
+     */
     public Map<Integer, Integer> getBestellList() {
         return bestellList;
     }
 
+    /**
+     * 
+     * @param bestellungId the bestellungId value to be set to the bestellung entry
+     * and the corresponding bestellung items
+     */
     public void setBestellList(Map<Integer, Integer> bestellList) {
         this.bestellList = bestellList;
     }
 
+    /**
+     * 
+     * @return Integer This is the id of the order (or bestellung) from the bestellung table
+     */
     public Integer getBestellungId() {
         return bestellungId;
     }
 
+    /**
+     * 
+     * @param bestellungId the bestellungId value to be set to the bestellung entry
+     * and the corresponding bestellung items
+     */
     public void setBestellungId(Integer bestellungId) {
         this.bestellungId = bestellungId;
     }
 
+    /**
+     * 
+     * @return Double This is the total price (sum) of the whole order (or bestellung)
+     * in the form of {@code Map<PreisId, Menge>}
+     */
     public Double getTotalPreis() {
         return totalPreis;
     }
 
+    /**
+     * 
+     * @param totalPreis the totalPreis value to be set to the bestellung entry
+     */
     public void setTotalPreis(Double totalPreis) {
         this.totalPreis = totalPreis;
     }
 
+    /**
+     * 
+     * Stores the ordered items in the Items table of the database
+     */
     public boolean store() {
         Connection con = null;
         PreparedStatement stm = null;
